@@ -22,6 +22,12 @@
     from doc_param
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <!--自己定义-->
+  <select id="selectByApiId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from doc_param where doc_api_id = #{docApiId,jdbcType=INTEGER }
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from doc_param
     where id = #{id,jdbcType=INTEGER}

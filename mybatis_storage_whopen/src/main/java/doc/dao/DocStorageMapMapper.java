@@ -14,4 +14,8 @@ public interface DocStorageMapMapper {
     int updateByPrimaryKeySelective(DocStorageMap record);
 
     int updateByPrimaryKey(DocStorageMap record);
+
+    //自定义
+    String selectParamNameByApiIdAndStorageId(Integer apiId,Integer storageId);
+
 }

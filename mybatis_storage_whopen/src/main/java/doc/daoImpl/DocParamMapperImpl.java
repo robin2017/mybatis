@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.Reader;
+import java.util.List;
 
 /**
  * Created by robin on 16/8/18.
@@ -76,5 +77,21 @@ public class DocParamMapperImpl implements DocParamMapper {
 
     public int updateByPrimaryKey(DocParam record) {
         return 0;
+    }
+
+    public List<DocParam> selectByApiId(Integer id) {
+
+
+        SqlSession session = sqlSessionFactory.openSession();
+        List<DocParam> params=null;
+        try{
+            DocParamMapper mapper = session.getMapper(DocParamMapper.class);
+            params=mapper.selectByApiId(id);
+            session.commit();
+        }finally {
+            session.close();
+        }
+
+        return params;
     }
 }

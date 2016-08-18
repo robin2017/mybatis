@@ -2,6 +2,8 @@ package doc.dao;
 
 import doc.meta.DocParam;
 
+import java.util.List;
+
 public interface DocParamMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface DocParamMapper {
     int updateByPrimaryKeySelective(DocParam record);
 
     int updateByPrimaryKey(DocParam record);
+
+    List<DocParam> selectByApiId(Integer id);
 }

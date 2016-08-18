@@ -79,4 +79,17 @@ public class DocStorageMapMapperImpl implements DocStorageMapMapper {
     public int updateByPrimaryKey(DocStorageMap record) {
         return 0;
     }
+
+    public String selectParamNameByApiIdAndStorageId(Integer apiId, Integer storageId) {
+        SqlSession session = sqlSessionFactory.openSession();
+        String paramName =null;
+        try{
+            DocStorageMapMapper mapper = session.getMapper(DocStorageMapMapper.class);
+            paramName=mapper.selectParamNameByApiIdAndStorageId(apiId,storageId);
+            session.commit();
+        }finally {
+            session.close();
+        }
+        return paramName;
+    }
 }

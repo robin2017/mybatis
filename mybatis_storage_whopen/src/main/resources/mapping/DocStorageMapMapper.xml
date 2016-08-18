@@ -16,6 +16,12 @@
     from doc_storage_map
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <!--自定义-->
+  <select id="selectParamNameByApiIdAndStorageId" parameterType="java.lang.Integer"  resultMap="string">
+    select param_name_list from doc_storage_map where storage_id=#{storageId,jdbcType=INTEGER}  and api_id=#{apiId,jdbcType}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from doc_storage_map
     where id = #{id,jdbcType=INTEGER}

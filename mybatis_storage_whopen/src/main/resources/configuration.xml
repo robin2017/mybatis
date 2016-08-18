@@ -25,7 +25,7 @@
 
                 <!-- 上面指定了数据库配置文件， 配置文件里面也是对应的这四个属性 -->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost/helloDB"/>
+                <property name="url" value="jdbc:mysql://localhost:3309/hellodb"/>
                 <property name="username" value="root"/>
                 <property name="password" value="123456"/>
 

@@ -14,6 +14,10 @@ import doc.meta.DocApi;
 
 import doc.meta.DocFunction;
 import doc.meta.DocParam;
+import doc.meta.DocStorageMap;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by robin on 16/8/18.
@@ -21,12 +25,12 @@ import doc.meta.DocParam;
 public class Test {
     static DocFunctionMapper functionMapper=new DocFunctionMapperImpl();
     static DocApiMapper apiMapper=new DocApiMapperImpl();
-    static DocStorageMapMapper diffMapMapper=new DocStorageMapMapperImpl();
+    static DocStorageMapMapper storageMapMapper=new DocStorageMapMapperImpl();
     static DocParamMapper paramMapper=new DocParamMapperImpl();
 
 
     public static void main(String[] args){
-      test1();
+      test4();
     }
 
     static void test1(){
@@ -69,31 +73,24 @@ public class Test {
         api2.setReturnExplain("此处的［失败原因］请第三方wms结合自身系统及仓库实操作提供网易一份列表");
         api2.setSpecification("1、订单下单时若sku已经库存不足，wms返回true 2、发现推送同一个订单，返回首次的返回值");
         System.out.println(apiMapper.insert(api2));
-
-
-
-
-//        DocDiffMap diffMap=new DocDiffMap();
-//        diffMap.setId(2);
-//        diffMap.setApiId(2);
-//        diffMap.setParamId(2);
-//        diffMap.setStorageId(2);
-//        System.out.println(diffMapMapper.insert(diffMap));
-//
-//        DocParam param=new DocParam();
-//        param.setId(2);
-//        param.setDocApiId(2);
-//        param.setVarDescripe("2ddd");
-//        param.setVarType("ddd2ddddd");
-//        param.setHasChild((byte)2);
-//        param.setOrderNo(2);
-//        param.setIsall((byte)2);
-//        System.out.println(paramMapper.insert(param));
     }
 
 
-    static void test2(){
-        DocFunction function=functionMapper.selectByPrimaryKey(1);
-        System.out.println(function.getName());
+    static void test2() {
+
+        DocStorageMap storageMap = new DocStorageMap();
+        storageMap = storageMapMapper.selectByPrimaryKey(1);
+        System.out.println(storageMap.getParamNameList());
+    }
+    static void test3(){
+        List<DocParam> list=new ArrayList<DocParam>();
+        list=paramMapper.selectByApiId(2);
+        for(DocParam param:list){
+            System.out.println(param.getParamName()+param.getParamDescripe()+param.getParamType());
+        }
+    }
+    static void test4(){
+        String result=storageMapMapper.selectParamNameByApiIdAndStorageId(1,1);
+        System.out.println(result);
     }
 }
