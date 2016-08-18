@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="doc.dao.DocApiMapper">
+  <resultMap id="BaseResultMap" type="doc.meta.DocApi">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="notify_type" jdbcType="INTEGER" property="notifyType" />
+    <result column="push_callback_type" jdbcType="INTEGER" property="pushCallbackType" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="doc_function_id" jdbcType="INTEGER" property="docFunctionId" />
+    <result column="application_scemarios" jdbcType="VARCHAR" property="applicationScemarios" />
+    <result column="interation_flow" jdbcType="VARCHAR" property="interationFlow" />
+    <result column="return_result" jdbcType="VARCHAR" property="returnResult" />
+    <result column="return_explain" jdbcType="VARCHAR" property="returnExplain" />
+    <result column="specification" jdbcType="VARCHAR" property="specification" />
+    <result column="example" jdbcType="VARCHAR" property="example" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, notify_type, push_callback_type, name, doc_function_id, application_scemarios, 
+    interation_flow, return_result, return_explain, specification, example
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doc_api
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doc_api
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="doc.meta.DocApi">
+    insert into doc_api (id, notify_type, push_callback_type, 
+      name, doc_function_id, application_scemarios, 
+      interation_flow, return_result, return_explain, 
+      specification, example)
+    values (#{id,jdbcType=INTEGER}, #{notifyType,jdbcType=INTEGER}, #{pushCallbackType,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{docFunctionId,jdbcType=INTEGER}, #{applicationScemarios,jdbcType=VARCHAR}, 
+      #{interationFlow,jdbcType=VARCHAR}, #{returnResult,jdbcType=VARCHAR}, #{returnExplain,jdbcType=VARCHAR}, 
+      #{specification,jdbcType=VARCHAR}, #{example,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="doc.meta.DocApi">
+    insert into doc_api
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="notifyType != null">
+        notify_type,
+      </if>
+      <if test="pushCallbackType != null">
+        push_callback_type,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="docFunctionId != null">
+        doc_function_id,
+      </if>
+      <if test="applicationScemarios != null">
+        application_scemarios,
+      </if>
+      <if test="interationFlow != null">
+        interation_flow,
+      </if>
+      <if test="returnResult != null">
+        return_result,
+      </if>
+      <if test="returnExplain != null">
+        return_explain,
+      </if>
+      <if test="specification != null">
+        specification,
+      </if>
+      <if test="example != null">
+        example,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="notifyType != null">
+        #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="pushCallbackType != null">
+        #{pushCallbackType,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="docFunctionId != null">
+        #{docFunctionId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationScemarios != null">
+        #{applicationScemarios,jdbcType=VARCHAR},
+      </if>
+      <if test="interationFlow != null">
+        #{interationFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="returnResult != null">
+        #{returnResult,jdbcType=VARCHAR},
+      </if>
+      <if test="returnExplain != null">
+        #{returnExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="specification != null">
+        #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="example != null">
+        #{example,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="doc.meta.DocApi">
+    update doc_api
+    <set>
+      <if test="notifyType != null">
+        notify_type = #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="pushCallbackType != null">
+        push_callback_type = #{pushCallbackType,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="docFunctionId != null">
+        doc_function_id = #{docFunctionId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationScemarios != null">
+        application_scemarios = #{applicationScemarios,jdbcType=VARCHAR},
+      </if>
+      <if test="interationFlow != null">
+        interation_flow = #{interationFlow,jdbcType=VARCHAR},
+      </if>
+      <if test="returnResult != null">
+        return_result = #{returnResult,jdbcType=VARCHAR},
+      </if>
+      <if test="returnExplain != null">
+        return_explain = #{returnExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="specification != null">
+        specification = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="example != null">
+        example = #{example,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="doc.meta.DocApi">
+    update doc_api
+    set notify_type = #{notifyType,jdbcType=INTEGER},
+      push_callback_type = #{pushCallbackType,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      doc_function_id = #{docFunctionId,jdbcType=INTEGER},
+      application_scemarios = #{applicationScemarios,jdbcType=VARCHAR},
+      interation_flow = #{interationFlow,jdbcType=VARCHAR},
+      return_result = #{returnResult,jdbcType=VARCHAR},
+      return_explain = #{returnExplain,jdbcType=VARCHAR},
+      specification = #{specification,jdbcType=VARCHAR},
+      example = #{example,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

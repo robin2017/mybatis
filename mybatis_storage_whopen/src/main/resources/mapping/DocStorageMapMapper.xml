@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="doc.dao.DocStorageMapMapper">
+  <resultMap id="BaseResultMap" type="doc.meta.DocStorageMap">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="storage_id" jdbcType="INTEGER" property="storageId" />
+    <result column="api_id" jdbcType="INTEGER" property="apiId" />
+    <result column="param_name_list" jdbcType="VARCHAR" property="paramNameList" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, storage_id, api_id, param_name_list
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doc_storage_map
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doc_storage_map
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="doc.meta.DocStorageMap">
+    insert into doc_storage_map (id, storage_id, api_id, 
+      param_name_list)
+    values (#{id,jdbcType=INTEGER}, #{storageId,jdbcType=INTEGER}, #{apiId,jdbcType=INTEGER}, 
+      #{paramNameList,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="doc.meta.DocStorageMap">
+    insert into doc_storage_map
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="storageId != null">
+        storage_id,
+      </if>
+      <if test="apiId != null">
+        api_id,
+      </if>
+      <if test="paramNameList != null">
+        param_name_list,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="storageId != null">
+        #{storageId,jdbcType=INTEGER},
+      </if>
+      <if test="apiId != null">
+        #{apiId,jdbcType=INTEGER},
+      </if>
+      <if test="paramNameList != null">
+        #{paramNameList,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="doc.meta.DocStorageMap">
+    update doc_storage_map
+    <set>
+      <if test="storageId != null">
+        storage_id = #{storageId,jdbcType=INTEGER},
+      </if>
+      <if test="apiId != null">
+        api_id = #{apiId,jdbcType=INTEGER},
+      </if>
+      <if test="paramNameList != null">
+        param_name_list = #{paramNameList,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="doc.meta.DocStorageMap">
+    update doc_storage_map
+    set storage_id = #{storageId,jdbcType=INTEGER},
+      api_id = #{apiId,jdbcType=INTEGER},
+      param_name_list = #{paramNameList,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
